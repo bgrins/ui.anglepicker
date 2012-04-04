@@ -37,10 +37,12 @@ $.widget("ui.anglepicker", $.ui.mouse, {
             y: myOffset.top+(this.height/2) 
         };
         
+        this.element.addClass("ui-anglepicker-dragging");
         this.setDegreesFromEvent(event);
         this._propagate("start", event);
     },
     _mouseStop: function (event) {
+        this.element.removeClass("ui-anglepicker-dragging");
         this._propagate("stop", event);
     },
     _mouseDrag: function (event) {
