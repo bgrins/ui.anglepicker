@@ -3,14 +3,17 @@
 A jQuery UI widget for selecting angles.
 JavaScript and CSS is based on [LayerStyles](https://github.com/mrflix/LayerStyles)
 
-$("#element").anglepicker({
-    start: function(e, ui) {
+    $("#element").anglepicker({
+        start: function(e, ui) {
+        
+        },
+        change: function(e, ui) {
+            $("#label").text(ui.degrees)
+        },
+        stop: function(e, ui) {
+        
+        },
+        value: 90
+    });
     
-    },
-    change: function(e, ui) {
-        $("#label").text(ui.degrees)
-    },
-    stop: function(e, ui) {
-    
-    }
-});
+    $("#element").anglepicker("value", 50);

@@ -3,13 +3,9 @@
 */
 
 $.widget("ui.anglepicker", $.ui.mouse, {
+	widgetEventPrefix: "angle",
     _init: function () {
         this._mouseInit();
-    },
-    _propagate: function(name, event) {
-        this._trigger(name, event, this.ui());
-    },
-    _create: function() {
         this.pointer = $('<div class="ui-anglepicker-pointer"></div>');
         this.pointer.append('<div class="ui-anglepicker-dot"></div>');
         this.pointer.append('<div class="ui-anglepicker-line"></div>');
@@ -17,7 +13,13 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         this.element.addClass("ui-anglepicker");
         this.element.append(this.pointer);
         
-        this.setDegrees(this.options.degrees);
+        this.setDegrees(this.options.value);
+    },
+    _propagate: function(name, event) {
+        this._trigger(name, event, this.ui());
+    },
+    _create: function() {
+    
     },
     destroy: function () {
         this._mouseDestroy();
@@ -45,14 +47,34 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         this.setDegreesFromEvent(event);
         this._propagate("change", event);
     },
+	_setOption: function( key, value ) {
+	
+		this._super( key, value );
+	},
+
     ui: function() {
         return {
             element: this.element,
-            degrees: this.degrees
+            value: this.options.value
         };
     },
+    value: function(newValue) {
+    
+        if ( !arguments.length ) {
+            return this.options.value;
+        }
+        
+        var oldValue = this.options.value;
+        this.setDegrees(newValue);
+        
+        if (oldValue !== this.options.value) {
+            this._propagate("change");
+        }
+        
+        return this;
+    },
     drawRotation: function() {
-        var rotation = 'rotate('+-this.degrees+'deg)';
+        var rotation = 'rotate('+-this.options.value+'deg)';
         this.pointer.css({
             '-webkit-transform': rotation,
             '-moz-transform': rotation,
@@ -61,14 +83,25 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         });
     },
     setDegrees: function(degrees) {
-        this.degrees = degrees;
+        this.options.value = this.clamp(degrees);
         this.drawRotation();
+    },
+    clamp: function(degrees) {
+        if ( typeof degrees !== "number" ) {
+            degrees = 0;
+        }
+        
+        if(degrees === -180) {
+            degrees = 180;
+        }
+        
+        return degrees;
     },
     setDegreesFromEvent: function(event) {
         var opposite = this.startOffset.y - event.pageY,
             adjacent = event.pageX - this.startOffset.x,
-            radiants = Math.atan(opposite/adjacent),
-            degrees = Math.round(radiants*(180/Math.PI), 10);
+            radians = Math.atan(opposite/adjacent),
+            degrees = Math.round(radians * (180/Math.PI), 10);
         
         if(event.shiftKey) {
             degrees = this.roundToMultiple(degrees, 15);
@@ -79,10 +112,6 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         }
         else if (opposite < 0 && adjacent < 0) {
             degrees-= 180;
-        }
-        
-        if(degrees === -180) {
-            degrees = 180;
         }
         
         this.setDegrees(degrees);
@@ -97,7 +126,7 @@ $.widget("ui.anglepicker", $.ui.mouse, {
     options: {
         distance: 1,
         delay: 1,
-        degrees: 90
+        value: 90
     }
 });
 

@@ -37,19 +37,19 @@
         
         $(function() {
             $("#anglepicker").anglepicker({
-                degrees: 90,
+                value: 90,
                 change: function(e, ui) {
-                    printDegrees(ui.degrees);
+                    printDegrees(ui.value);
                 },
                 start: function(e, ui) {
-                    printDegrees(ui.degrees);
+                    printDegrees(ui.value);
                 },
                 stop: function() {
                 
                 }
            });
-           
-           printDegrees(90);
+    
+            $("#anglepicker").anglepicker("value", 50);
         });
     </script>
 </head>
