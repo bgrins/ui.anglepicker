@@ -79,6 +79,7 @@ $.widget("ui.anglepicker", $.ui.mouse, {
             '-webkit-transform': rotation,
             '-moz-transform': rotation,
             '-ms-transform': rotation,
+            '-o-transform': rotation,
             'transform': rotation
         });
     },

@@ -21,6 +21,8 @@
     width: 50%;
     -moz-transform-origin: 1.5px 1.5px;
     -webkit-transform-origin: 1.5px 1.5px;
+    -ms-transform-origin: 1.5px 1.5px;
+    -o-transform-origin: 1.5px 1.5px;
     transform-origin: 1.5px 1.5px;
     position: absolute;
 }
