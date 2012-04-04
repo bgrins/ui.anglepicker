@@ -1,0 +1,40 @@
+.ui-anglepicker {
+    margin: 0 3px;
+    width: 50px;
+    height: 50px;
+    background: -moz-linear-gradient(top, #dbdbdb, #e1e1de 20%, #f8f8f3);
+    background: -webkit-gradient(linear, left top, left bottom, from(#dbdbdb), color-stop(50%, #e1e1de), to(#f8f8f3));
+    border: 2px solid #727272;
+    -moz-box-shadow: inset 0 2px 3px white, inset 0 -1px 2px #fffef8;
+    -webkit-box-shadow: inset 0 2px 3px white, inset 0 -1px 2px #fffef8;
+    box-shadow: inset 0 2px 3px white, inset 0 -1px 2px #fffef8;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+.ui-anglepicker-pointer {
+    top: 50%;
+    left: 50%;
+    margin: -1.5px 0 0 -1.5px;
+    width: 50%;
+    -moz-transform-origin: 1.5px 1.5px;
+    -webkit-transform-origin: 1.5px 1.5px;
+    transform-origin: 1.5px 1.5px;
+    position: absolute;
+}
+
+.ui-anglepicker-dot {
+    height: 3px;
+    width: 3px;
+    background: #909090;
+    position: absolute;
+}
+
+.ui-anglepicker-line {
+    margin-top: 1px;
+    height: 1px;
+    background: #909090;
+}​

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <title>UI Anglepicker</title>
+ 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" />
+    
+    <script type="text/javascript" src="ui.anglepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="ui.anglepicker.css" />
+    
+    <style type='text/css'>
+        body {
+            font-family: "Lucida Sans", "Lucida Grande", sans-serif;
+            font-size: 12px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 40px;
+        }
+        #container {
+            margin-top: 30px;
+        }
+        #log {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        
+    </style>
+    <script type='text/javascript'>
+        function printDegrees(deg) {
+            $("#log").html(deg + '&deg;');
+        }
+        
+        $(function() {
+            $("#anglepicker").anglepicker({
+                degrees: 90,
+                change: function(e, ui) {
+                    printDegrees(ui.degrees);
+                },
+                start: function(e, ui) {
+                    printDegrees(ui.degrees);
+                },
+                stop: function() {
+                
+                }
+           });
+           
+           printDegrees(90);
+        });
+    </script>
+</head>
+ 
+<body>
+
+<h1>UI Anglepicker</h1>
+
+<div id='container'>
+    <div id="anglepicker"></div>
+    <div id='log'></div>
+</div>
+
+</body>
+</html>
