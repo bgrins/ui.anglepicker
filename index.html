@@ -29,6 +29,17 @@
             font-size: 20px;
         }
         
+        em {
+            background: #2d2d2d;
+            color: #b9b9b9;
+            padding: 4px 10px;
+            border-radius: 10px;
+            display:inline-block;
+            margin-top: 20px;
+            font-style: normal;
+            display: none;
+        }
+        
     </style>
     <script type='text/javascript'>
         function printDegrees(deg) {
@@ -43,9 +54,10 @@
                 },
                 start: function(e, ui) {
                     printDegrees(ui.value);
+                    $("em").fadeIn('fast');
                 },
                 stop: function() {
-                
+                    $("em").hide();
                 }
            });
     
@@ -64,6 +76,9 @@
         
         <a href='http://twitter.com/bgrins'>@bgrins</a> -
         <a href='https://github.com/bgrins/ui.anglepicker'>source code</a>
+        
+        <br /><br />
+        <em>Tip: If you hold shift, you can snap to 15 degree increments</em>
     </div>
     
 </body>
