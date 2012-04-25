@@ -106,8 +106,11 @@ $.widget("ui.anglepicker", $.ui.mouse, {
             radians = Math.atan(opposite/adjacent),
             degrees = Math.round(radians * (180/Math.PI), 10);
         
-        if(event.shiftKey) {
-            degrees = this.roundToMultiple(degrees, 15);
+        if (event.shiftKey) {
+            degrees = this.roundToMultiple(degrees, this.options.shiftSnap);
+        }
+        else {
+            degrees = this.roundToMultiple(degrees, this.options.snap);
         }
         
         if(adjacent < 0 && opposite >= 0) {
@@ -129,6 +132,8 @@ $.widget("ui.anglepicker", $.ui.mouse, {
     options: {
         distance: 1,
         delay: 1,
+        snap: 5,
+        shiftSnap: 15,
         value: 90
     }
 });
