@@ -94,8 +94,8 @@ $.widget("ui.anglepicker", $.ui.mouse, {
             degrees = 0;
         }
         
-        if(degrees === -180) {
-            degrees = 180;
+        if (degrees < 0) {
+            degrees += 360;
         }
         
         return degrees;
