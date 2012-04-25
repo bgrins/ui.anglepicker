@@ -132,7 +132,7 @@ $.widget("ui.anglepicker", $.ui.mouse, {
     options: {
         distance: 1,
         delay: 1,
-        snap: 5,
+        snap: 1,
         shiftSnap: 15,
         value: 90
     }
