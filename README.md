@@ -1,6 +1,7 @@
 # UI Anglepicker
 
 A jQuery UI widget for selecting angles.
+
 JavaScript and CSS is based on [LayerStyles](https://github.com/mrflix/LayerStyles)
 
     $("#element").anglepicker({
