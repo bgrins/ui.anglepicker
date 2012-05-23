@@ -94,10 +94,13 @@ $.widget("ui.anglepicker", $.ui.mouse, {
             degrees = 0;
         }
         
-        while (degrees < this.options.range[0]) {
+        var min = this.options.min,
+            max = min + 360;
+            
+        while (degrees < min) {
             degrees += 360;
         }
-        while (degrees > this.options.range[1]) {
+        while (degrees > max) {
             degrees -= 360;
         }
         
@@ -136,7 +139,7 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         distance: 1,
         delay: 1,
         snap: 1,
-        range: [0, 360],
+        min: 0,
         shiftSnap: 15,
         value: 90
     }
