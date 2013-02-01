@@ -2,50 +2,60 @@
 <html>
 <head>
     <title>UI Anglepicker</title>
- 
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" />
-    
+
     <script type="text/javascript" src="ui.anglepicker.js"></script>
     <link rel="stylesheet" type="text/css" href="ui.anglepicker.css" />
-    
+
     <style type='text/css'>
         body {
             font-family: "Lucida Sans", "Lucida Grande", sans-serif;
             font-size: 12px;
         }
-        
+
+        h2 {
+            text-align: center;
+        }
+
         h1 {
             font-size: 40px;
             text-align: center;
         }
         #container {
+            margin: 0 auto;
             margin-top: 30px;
             text-align: center;
+            width: 800px;
+        }
+        #container .left {
+            border-top: solid 2px #ddd;
+            text-align: left;
         }
         #log {
             margin: 30px 0;
             font-size: 20px;
         }
-        
+
         em {
             background: #2d2d2d;
             color: #b9b9b9;
             padding: 4px 10px;
             border-radius: 10px;
             display:inline-block;
-            margin-top: 20px;
+            margin: 20px 0;
             font-style: normal;
             display: none;
         }
-        
+
     </style>
     <script type='text/javascript'>
         function printDegrees(deg) {
             $("#log").html(deg + '&deg;');
         }
-        
+
         $(function() {
             $("#anglepicker").anglepicker({
                 value: 90,
@@ -60,26 +70,50 @@
                     $("em").hide();
                 }
            });
-    
+
             $("#anglepicker").anglepicker("value", 50);
         });
     </script>
 </head>
- 
+
 <body>
 
     <h1>UI Anglepicker</h1>
-
+    <h2>A fun way to choose angles in a web page</h2>
     <div id='container'>
         <div id="anglepicker"></div>
         <div id='log'></div>
-        
-        <a href='http://twitter.com/bgrins'>@bgrins</a> -
+
+        Say hi to <a href='http://twitter.com/bgrins'>@bgrins</a> or view the
         <a href='https://github.com/bgrins/ui.anglepicker'>source code</a>
-        
+
         <br /><br />
         <em>Tip: If you hold shift, you can snap to 15 degree increments</em>
+
+        <div class='left'>
+            <h3>Basic Usage</h3>
+<pre>
+$("#element").anglepicker({
+    start: function(e, ui) {
+
+    },
+    change: function(e, ui) {
+        $("#label").text(ui.degrees)
+    },
+    stop: function(e, ui) {
+
+    },
+    value: 90
+});
+
+$("#element").anglepicker("value", 50);
+</pre>
+        </div>
+        <div class='left'>
+            <h3>More documentation</h3>
+            See the <a href='https://github.com/bgrins/ui.anglepicker'>project page</a> or <a href='ui.anglepicker.js'>ui.anglepicker.js</a> (it's small) for more information.
+        </div>
     </div>
-    
+
 </body>
 </html>
