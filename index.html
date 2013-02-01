@@ -16,6 +16,12 @@
             font-size: 12px;
         }
 
+        body, html {
+            height: 100%;
+            margin:0;
+            padding:0;
+        }
+
         h2 {
             text-align: center;
         }
@@ -55,12 +61,17 @@
         function printDegrees(deg) {
             $("#log").html(deg + '&deg;');
         }
+        function printGradient(deg) {
+            $("html").css("background-image", "-webkit-linear-gradient("+deg+"deg, #afa, #fff)");
+            $("html").css("background-image", "linear-gradient("+(deg - 90)+"deg, #afa, #fff)");
+        }
 
         $(function() {
             $("#anglepicker").anglepicker({
                 value: 90,
                 change: function(e, ui) {
                     printDegrees(ui.value);
+                    printGradient(ui.value);
                 },
                 start: function(e, ui) {
                     printDegrees(ui.value);
@@ -71,7 +82,7 @@
                 }
            });
 
-            $("#anglepicker").anglepicker("value", 50);
+            $("#anglepicker").anglepicker("value", 270);
         });
     </script>
 </head>
