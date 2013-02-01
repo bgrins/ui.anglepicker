@@ -37,6 +37,7 @@
             margin-top: 30px;
             text-align: center;
             width: 800px;
+            position:relative;
         }
         #container .left {
             border-top: solid 2px #ddd;
@@ -85,6 +86,20 @@
            });
 
             $("#anglepicker").anglepicker("value", 270);
+
+            var pick2 = $("#anglepicker2");
+            var container = $("#container");
+            pick2.anglepicker({
+            change: function(e, ui){
+                container.css("-webkit-transform", "rotate(" + ui.value+ "deg)");
+            },
+            value: 0});
+
+            var pos = pick2.position();
+            var width = pick2.outerWidth() / 2;
+            var height = pick2.outerHeight() / 2
+            var tOrig = (pos.left + width)+ "px " + (pos.top + height) + "px";
+            container.css("-webkit-transform-origin", tOrig);
         });
     </script>
 </head>
@@ -102,7 +117,8 @@
 
         <br /><br />
         <em>Tip: If you hold shift, you can snap to 15 degree increments</em>
-
+        <br />
+        <div id="anglepicker2"></div>
         <div class='left'>
             <h3>Basic Usage</h3>
 <pre>
