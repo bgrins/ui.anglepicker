@@ -83,14 +83,14 @@
                 stop: function() {
                     $("em").hide();
                 }
-           });
+            });
 
             $("#anglepicker").anglepicker("value", 270);
 
             var pick2 = $("#anglepicker2");
             var container = $("#container");
             pick2.anglepicker({
-            change: function(e, ui){
+            change: function(e, ui) {
                 container.css("-webkit-transform", "rotate(" + ui.value+ "deg)");
             },
             value: 0});
