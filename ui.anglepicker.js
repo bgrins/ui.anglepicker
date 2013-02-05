@@ -76,7 +76,9 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         return this;
     },
     drawRotation: function() {
-        var rotation = 'rotate('+-this.options.value+'deg)';
+        var value = this.options.clockwise ? this.options.value : -this.options.value;
+        var rotation = 'rotate('+-value+'deg)';
+
         this.pointer.css({
             '-webkit-transform': rotation,
             '-moz-transform': rotation,
@@ -107,8 +109,10 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         return degrees;
     },
     setDegreesFromEvent: function(event) {
-        var opposite = this.startOffset.y - event.pageY,
-            adjacent = event.pageX - this.startOffset.x,
+        var opposite = this.startOffset.y - event.pageY;
+        opposite = this.options.clockwise ? opposite : -opposite;
+
+        var adjacent = event.pageX - this.startOffset.x,
             radians = Math.atan(opposite/adjacent),
             degrees = Math.round(radians * (180/Math.PI), 10);
 
@@ -141,6 +145,7 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         snap: 1,
         min: 0,
         shiftSnap: 15,
-        value: 90
+        value: 90,
+        clockwise: true // anti-clockwise if false
     }
 });
