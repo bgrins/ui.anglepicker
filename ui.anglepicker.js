@@ -27,7 +27,7 @@ $.widget("ui.anglepicker", $.ui.mouse, {
         this.element.removeClass("ui-anglepicker");
         this.pointer.remove();
     },
-    _mouseStart: function(event) {
+    _mouseCapture: function(event) {
         var myOffset = this.element.offset();
         this.width = this.element.width();
         this.height = this.element.height();
@@ -37,11 +37,21 @@ $.widget("ui.anglepicker", $.ui.mouse, {
             y: myOffset.top+(this.height/2)
         };
 
+        if (!this.element.is("ui-anglepicker-dragging")) {
+            this.setDegreesFromEvent(event);
+            this._propagate("change", event);
+        }
+
+        return true;
+    },
+    _mouseStart: function(event) {
+        this.isDragging = true;
         this.element.addClass("ui-anglepicker-dragging");
         this.setDegreesFromEvent(event);
         this._propagate("start", event);
     },
     _mouseStop: function(event) {
+        this.isDragging = true;
         this.element.removeClass("ui-anglepicker-dragging");
         this._propagate("stop", event);
     },
@@ -75,6 +85,7 @@ $.widget("ui.anglepicker", $.ui.mouse, {
 
         return this;
     },
+    isDragging: false,
     drawRotation: function() {
         var value = this.options.clockwise ? this.options.value : -this.options.value;
         var rotation = 'rotate('+-value+'deg)';
