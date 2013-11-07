@@ -104,7 +104,10 @@ $.widget("ui.anglepicker", $.ui.mouse, {
     },
     clamp: function(degrees) {
         if (typeof degrees !== "number") {
-            degrees = 0;
+            degrees = parseInt(degrees, 10);
+            if (isNaN(degrees)) {
+                degrees = 0;
+            }
         }
 
         var min = this.options.min,
