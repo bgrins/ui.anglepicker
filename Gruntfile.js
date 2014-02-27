@@ -51,6 +51,7 @@ module.exports = function(grunt) {
   grunt.renameTask('regarde', 'watch');
 
   grunt.registerTask('default', ['jshint', 'qunit']);
+  grunt.registerTask('test', ['default']);
   grunt.registerTask('build', ['jshint', 'qunit', 'uglify']);
 
 };
